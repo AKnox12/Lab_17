@@ -1,4 +1,4 @@
-# Python 
+# Python
 # Autumn Knox
 # Plotting other language repos
 # May 7th 2025
@@ -9,9 +9,14 @@ import requests
 from plotly.graph_objs import Bar
 from plotly import offline
 
+'''Setting up the main'''
+def main():
+    visualizer = Cpp_repo_visualizer()
+    visualizer.Viaualize()
+
 '''Beginning class for the visualizer'''
 class Cpp_repo_visualizer: 
-    def Viaualize():
+    def Viaualize(self):
 
         '''API calls and store response'''
         url = 'https://api.github.com/search/repositories?q=language:cpp&sort=stars'
@@ -65,3 +70,6 @@ class Cpp_repo_visualizer:
 
         fig = {'data': data, 'layout': my_layout}
         offline.plot(fig, filename='cpp_repos.html')
+
+if __name__=="__main__":
+    main()
