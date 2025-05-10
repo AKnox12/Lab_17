@@ -3,21 +3,23 @@
 # Plotting other language repos
 # May 7th 2025
 
-
+'''All the imports for the program'''
 import requests
 
 from plotly.graph_objs import Bar
 from plotly import offline
 
+'''Beginning class for the visualizer'''
 class Cpp_repo_visualizer: 
     def Viaualize():
-        # Make an API call and store the response.
+
+        '''API calls and store response'''
         url = 'https://api.github.com/search/repositories?q=language:cpp&sort=stars'
         headers = {'Accept': 'application/vnd.github.v3+json'}
         r = requests.get(url, headers=headers)
         print(f"Status code: {r.status_code}")
 
-        # Process results.
+        '''Process results'''
         response_dict = r.json()
         repo_dicts = response_dict['items']
         repo_links, stars, labels = [], [], []
@@ -34,7 +36,7 @@ class Cpp_repo_visualizer:
             label = f"{owner}<br />{description}"
             labels.append(label)
 
-        # Make visualization.
+        '''Make visualization'''
         data = [{
             'type': 'bar',
             'x': repo_links,
@@ -46,6 +48,8 @@ class Cpp_repo_visualizer:
             },
             'opacity': 0.6,
         }]
+
+        '''Font size and stylization in graph'''
         my_layout = {
             'title': 'Most-Starred CPP Projects on GitHub',
             'font': {'size': 28},
